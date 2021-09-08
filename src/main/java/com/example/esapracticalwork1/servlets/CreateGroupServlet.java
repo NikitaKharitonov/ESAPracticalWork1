@@ -11,6 +11,7 @@ import java.io.IOException;
 
 @WebServlet(name = "CreateGroupServlet", value = "/CreateGroupServlet", urlPatterns = "/create-group")
 public class CreateGroupServlet extends HttpServlet {
+
     @EJB
     AppBean appBean;
 

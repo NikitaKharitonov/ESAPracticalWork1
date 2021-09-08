@@ -7,6 +7,7 @@ import java.util.*;
 @Entity
 @Table(name = "_group")
 public class Group {
+
     @Id
     @GeneratedValue
     private Long id;
@@ -20,11 +21,6 @@ public class Group {
     private Set<Course> courses = new HashSet<>();
 
     public Group() {
-    }
-
-    public Group(Set<Student> students, Set<Course> courses) {
-        this.students = students;
-        this.courses = courses;
     }
 
     public Group(Integer year) {

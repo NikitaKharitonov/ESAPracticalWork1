@@ -1,37 +1,37 @@
-<%@ page import="java.util.List" %><%--
-  Created by IntelliJ IDEA.
-  User: Nikita
-  Date: 08.09.2021
-  Time: 17:12
-  To change this template use File | Settings | File Templates.
---%>
+<%@ page import="java.util.List" %>
+<%@ page import="com.example.esapracticalwork1.model.Course" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Title</title>
-    <style>
-        <%@ include file="../resources/css/style.css"%>
-    </style>
+    <title>Create course</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
 </head>
 <body>
-<div class="form-container">
-    <% List<Long> groupIds = (List<Long>) request.getAttribute("groupIds"); %>
+<% List<Long> groupIds = (List<Long>) request.getAttribute("groupIds"); %>
+<div class="container w-50">
     <form method="post" action="${pageContext.request.contextPath}/create-course">
         <h1>Create course</h1>
-        <label>Name:
-            <input name="name" type="text" required/>
-        </label>
-        <label>Hours:
-            <input name="hours" type="number" min="1" max="1000" required/>
-        </label>
-        <label>Group id:
-            <select name="groupId" required>
-                <% for(Long groupId: groupIds) {%>
-                <option value="<%= groupId %>"><%= groupId %></option>
+        <div class="form-group">
+            <label for="name">Name: </label>
+            <input class="form-control" id="name" name="name" type="text" required/>
+        </div>
+        <div class="form-group">
+            <label for="hours">Hours: </label>
+            <input class="form-control" id="hours" name="hours" type="number" min="1" max="1000"
+                   required/>
+        </div>
+        <div class="form-group">
+            <label for="groupId">Group id: </label>
+            <select class="form-control" id="groupId" name="groupId" required>
+                <% for (Long groupId : groupIds) {%>
+                <option value="<%= groupId %>"><%= groupId %>
+                </option>
                 <%}%>
             </select>
-        </label>
-        <input type="submit" value="Create" class="btn"/>
+        </div>
+        <br>
+        <input type="submit" value="Create" class="btn btn-primary"/>
     </form>
 </div>
 </body>

@@ -17,6 +17,7 @@ import java.util.stream.Collectors;
 
 @WebServlet(name = "CreateStudentServlet", value = "/CreateStudentServlet", urlPatterns = "/create-student")
 public class CreateStudentServlet extends HttpServlet {
+
     @EJB
     AppBean appBean;
 

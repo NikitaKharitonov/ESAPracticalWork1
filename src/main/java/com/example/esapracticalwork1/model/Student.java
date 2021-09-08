@@ -6,11 +6,15 @@ import java.time.LocalDate;
 
 @Entity
 public class Student {
+
     @Id
     @GeneratedValue
     private Long id;
+
     private String firstName;
+
     private String lastName;
+
     private LocalDate dateOfBirth;
 
     @ManyToOne
@@ -24,6 +28,13 @@ public class Student {
         this.firstName = firstName;
         this.lastName = lastName;
         this.dateOfBirth = dateOfBirth;
+    }
+
+    public Student(String firstName, String lastName, LocalDate dateOfBirth, Group group) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.dateOfBirth = dateOfBirth;
+        this.group = group;
     }
 
     public Long getId() {

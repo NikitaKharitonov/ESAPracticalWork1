@@ -16,7 +16,7 @@ public class GroupDao {
         entityManager.close();
     }
 
-    public Group read(Long id) {
+    public Group get(Long id) {
         EntityManager entityManager = DaoUtil.getEntityManagerFactory().createEntityManager();
         entityManager.getTransaction().begin();
 
@@ -27,7 +27,7 @@ public class GroupDao {
         return group;
     }
 
-    public List<Group> readAll(){
+    public List<Group> getAll() {
         EntityManager entityManager = DaoUtil.getEntityManagerFactory().createEntityManager();
         entityManager.getTransaction().begin();
 
@@ -43,8 +43,6 @@ public class GroupDao {
         entityManager.getTransaction().begin();
 
         Group group = entityManager.find(Group.class, id);
-//        group.setCourses(newGroupData.getCourses());
-//        group.setStudents(newGroupData.getStudents());
 
         entityManager.getTransaction().commit();
         entityManager.close();
@@ -60,16 +58,4 @@ public class GroupDao {
         entityManager.getTransaction().commit();
         entityManager.close();
     }
-
-//    public void addCourse(Long groupId, Long courseId) {
-//        EntityManager entityManager = Util.getEntityManagerFactory().createEntityManager();
-//        entityManager.getTransaction().begin();
-//
-//        Group group = entityManager.find(Group.class, groupId);
-//        group.getCourses().add(entityManager.find(Course.class, courseId));
-//
-//        entityManager.getTransaction().commit();
-//        entityManager.close();
-//
-//    }
 }

@@ -1,40 +1,39 @@
-<%@ page import="java.util.List" %><%--
-  Created by IntelliJ IDEA.
-  User: Nikita
-  Date: 08.09.2021
-  Time: 17:12
-  To change this template use File | Settings | File Templates.
---%>
+<%@ page import="java.util.List" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
     <title>Create student</title>
-    <style>
-        <%@ include file="../resources/css/style.css"%>
-    </style>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
 </head>
 <body>
-<div class="form-container">
-    <% List<Long> groupIds = (List<Long>) request.getAttribute("groupIds"); %>
+<% List<Long> groupIds = (List<Long>) request.getAttribute("groupIds"); %>
+<div class="container w-50">
     <form method="post" action="${pageContext.request.contextPath}/create-student">
         <h1>Create student</h1>
-        <label>First name:
-            <input name="firstName" type="text" required/>
-        </label>
-        <label>Last name:
-            <input name="lastName" type="text" required/>
-        </label>
-        <label>Date of birth:
-            <input name="dateOfBirth" type="date" required>
-        </label>
-        <label>Group id:
-            <select name="groupId" required>
-                <% for(Long groupId: groupIds) {%>
-                <option value="<%= groupId %>"><%= groupId %></option>
+        <div class="form-group">
+            <label for="fname">First name: </label>
+            <input class="form-control" id="fname" name="firstName" type="text" required/>
+        </div>
+        <div class="form-group">
+            <label for="lname">Last name: </label>
+            <input class="form-control" id="lname" name="lastName" type="text" required/>
+        </div>
+        <div class="form-group">
+            <label for="dob">Date of birth: </label>
+            <input class="form-control" id="dob" name="dateOfBirth" type="date" required>
+        </div>
+        <div class="form-group">
+            <label for="groupId">Group id: </label>
+            <select class="form-control" id="groupId" name="groupId" required>
+                <% for (Long groupId : groupIds) {%>
+                <option value="<%= groupId %>"><%= groupId %>
+                </option>
                 <%}%>
             </select>
-        </label>
-        <input type="submit" value="Create" class="btn"/>
+        </div>
+        <br>
+        <input type="submit" value="Create" class="btn btn-primary"/>
     </form>
 </div>
 </body>

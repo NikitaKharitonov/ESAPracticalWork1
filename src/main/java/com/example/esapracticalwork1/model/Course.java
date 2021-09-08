@@ -4,11 +4,13 @@ import jakarta.persistence.*;
 
 @Entity
 public class Course {
+
     @Id
     @GeneratedValue
     private Long id;
 
     private String name;
+
     private Integer hours;
 
     @ManyToOne
@@ -18,15 +20,15 @@ public class Course {
     public Course() {
     }
 
+    public Course(String name, Integer hours) {
+        this.name = name;
+        this.hours = hours;
+    }
+
     public Course(String name, Integer hours, Group group) {
         this.name = name;
         this.hours = hours;
         this.group = group;
-    }
-
-    public Course(String name, Integer hours) {
-        this.name = name;
-        this.hours = hours;
     }
 
     public Long getId() {

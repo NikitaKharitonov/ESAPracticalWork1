@@ -17,7 +17,7 @@ public class StudentDao {
         entityManager.close();
     }
 
-    public Student read(Long id) {
+    public Student get(Long id) {
         EntityManager entityManager = DaoUtil.getEntityManagerFactory().createEntityManager();
         entityManager.getTransaction().begin();
 
@@ -28,7 +28,7 @@ public class StudentDao {
         return student;
     }
 
-    public List<Student> readAll(){
+    public List<Student> getAll() {
         EntityManager entityManager = DaoUtil.getEntityManagerFactory().createEntityManager();
         entityManager.getTransaction().begin();
 
@@ -63,8 +63,4 @@ public class StudentDao {
         entityManager.getTransaction().commit();
         entityManager.close();
     }
-
-
-
-
 }

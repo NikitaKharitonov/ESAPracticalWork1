@@ -12,6 +12,7 @@ import java.util.List;
 
 @WebServlet(name = "ShowGroupsServlet", value = "/ShowGroupsServlet", urlPatterns = "/groups")
 public class ShowGroupsServlet extends HttpServlet {
+
     @EJB
     AppBean appBean;
 
@@ -20,10 +21,5 @@ public class ShowGroupsServlet extends HttpServlet {
         List<Group> groups = appBean.getAllGroups();
         request.setAttribute("groups", groups);
         request.getRequestDispatcher("view/ShowGroups.jsp").forward(request, response);
-    }
-
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
     }
 }

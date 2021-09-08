@@ -9,6 +9,7 @@ import jakarta.persistence.Persistence;
 
 import java.time.LocalDate;
 import java.time.Month;
+import java.util.List;
 
 public class DaoUtil {
     private static final EntityManagerFactory entityManagerFactory =
@@ -19,36 +20,44 @@ public class DaoUtil {
     }
 
     static {
-        Group group = new Group();
-        group.setYear(1);
+        Group group = new Group(1);
+        Group group1 = new Group(2);
+        Group group2 = new Group(3);
 
-        Student student = new Student();
-        student.setFirstName("Ivan");
-        student.setLastName("Ivanov");
-        student.setDateOfBirth(LocalDate.of(1999, Month.SEPTEMBER, 15));
-        student.setGroup(group);
+        List<Student> students = List.of(
+                new Student("Ivan", "Ivanov", LocalDate.of(1990, 10, 1), group2),
+                new Student("Petr", "Petrov", LocalDate.of(1991, 1, 3), group2),
+                new Student("Zakhar", "Zakharov", LocalDate.of(1992, 2, 5), group2),
+                new Student("Anna", "Annova", LocalDate.of(1993, 3, 7), group1),
+                new Student("Roman", "Romanov", LocalDate.of(1994, 4, 11), group1),
+                new Student("Vika", "Vikova", LocalDate.of(1995, 5, 13), group1),
+                new Student("Olga", "Olgova", LocalDate.of(1996, 6, 17), group1),
+                new Student("Nina", "Ninova", LocalDate.of(1997, 7, 19), group),
+                new Student("Ivan", "Petrov", LocalDate.of(1998, 8, 23), group),
+                new Student("Petr", "Ivanov", LocalDate.of(1999, 9, 30), group)
+        );
 
-        Student student1 = new Student();
-        student1.setFirstName("Petr");
-        student1.setLastName("Petrov");
-        student1.setDateOfBirth(LocalDate.of(2000, Month.JANUARY, 23));
-        student1.setGroup(group);
-
-        Course course = new Course();
-        course.setName("math");
-        course.setHours(19);
-        course.setGroup(group);
-
-        group.getStudents().add(student);
-        group.getStudents().add(student1);
-        group.getCourses().add(course);
-
-
+        List<Course> courses = List.of(
+                new Course("Math", 36, group2),
+                new Course("Physics", 36, group2),
+                new Course("Chemistry", 36, group1),
+                new Course("Geography", 18, group1),
+                new Course("Biology", 36, group1),
+                new Course("Technology", 36, group1),
+                new Course("History", 18, group),
+                new Course("Sport", 36, group),
+                new Course("Literature", 18, group),
+                new Course("English", 18, group)
+        );
 
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         entityManager.getTransaction().begin();
 
         entityManager.persist(group);
+        entityManager.persist(group1);
+        entityManager.persist(group2);
+        students.forEach(entityManager::persist);
+        courses.forEach(entityManager::persist);
 
         entityManager.getTransaction().commit();
         entityManager.close();

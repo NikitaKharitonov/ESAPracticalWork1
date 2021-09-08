@@ -1,36 +1,29 @@
 <%@ page import="com.example.esapracticalwork1.model.Course" %>
 <%@ page import="java.util.List" %>
-<%@ page import="com.example.esapracticalwork1.model.Student" %><%--
-  Created by IntelliJ IDEA.
-  User: Nikita
-  Date: 08.09.2021
-  Time: 17:11
-  To change this template use File | Settings | File Templates.
---%>
+<%@ page import="com.example.esapracticalwork1.model.Student" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Title</title>
-    <style>
-        <%@ include file="../resources/css/style.css"%>
-    </style>
+    <title>Courses</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
 </head>
 <body>
-<%
-    List<Course> courses = (List<Course>) request.getAttribute("courses");
-%>
-<div class="container-table">
-    <form action="${pageContext.request.contextPath}/groups" method="get">
-        <button class="btn">Show groups</button>
-    </form>
-    <form action="${pageContext.request.contextPath}/courses" method="get">
-        <button class="btn">Show courses</button>
-    </form>
-    <form action="${pageContext.request.contextPath}/students" method="get">
-        <button class="btn">Show students</button>
-    </form>
-    <table>
-        <caption>Courses</caption>
+<% List<Course> courses = (List<Course>) request.getAttribute("courses"); %>
+<div class="container">
+    <ul class="nav justify-content-center">
+        <li class="nav-item">
+            <a class="nav-link" href="${pageContext.request.contextPath}/groups">Show groups</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="${pageContext.request.contextPath}/courses">Show courses</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="${pageContext.request.contextPath}/students">Show students</a>
+        </li>
+    </ul>
+    <table class="table table-striped table-dark table-hover">
+        <caption style="caption-side: top">Courses</caption>
         <thead>
         <tr>
             <th>Id</th>
@@ -42,24 +35,34 @@
         </tr>
         </thead>
         <tbody>
-        <% for (Course course: courses) { %>
+        <% for (Course course : courses) { %>
         <tr>
-            <td><%= course.getId() %></td>
-            <td><%= course.getName() %></td>
-            <td><%= course.getHours() %></td>
-            <td><%= course.getGroup().getId() %></td>
-            <td>Update
+            <td><%= course.getId() %>
             </td>
-            <td>Delete
+            <td><%= course.getName() %>
+            </td>
+            <td><%= course.getHours() %>
+            </td>
+            <td><%= course.getGroup().getId() %>
+            </td>
+            <td>
+                <form action="${pageContext.request.contextPath}/update-course">
+                    <input type="hidden" name="courseId" value="<%= course.getId() %>">
+                    <input type="submit" value="Update" class="btn btn-primary">
+                </form>
+            </td>
+            <td>
+                <form action="${pageContext.request.contextPath}/delete-course" method="post">
+                    <input type="hidden" name="courseId" value="<%= course.getId() %>">
+                    <input type="submit" class="btn btn-danger" value="Delete">
+                </form>
             </td>
         </tr>
         <% } %>
         </tbody>
-
-
     </table>
     <form action="${pageContext.request.contextPath}/create-course" method="get">
-        <button class="btn">Create</button>
+        <button class="btn btn-primary">Create course</button>
     </form>
 </div>
 </body>

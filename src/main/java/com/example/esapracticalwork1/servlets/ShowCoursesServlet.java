@@ -13,6 +13,7 @@ import java.util.List;
 
 @WebServlet(name = "ShowCoursesServlet", value = "/ShowCoursesServlet", urlPatterns = "/courses")
 public class ShowCoursesServlet extends HttpServlet {
+
     @EJB
     AppBean appBean;
 
@@ -21,10 +22,5 @@ public class ShowCoursesServlet extends HttpServlet {
         List<Course> courses = appBean.getAllCourses();
         request.setAttribute("courses", courses);
         request.getRequestDispatcher("view/ShowCourses.jsp").forward(request, response);
-    }
-
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
     }
 }
