@@ -1,4 +1,4 @@
-#Practical work #1 for Enterprise Systems Architecture course 
+# Practical work #1 for Enterprise Systems Architecture course 
  
 - JDK 16.0.2
 - Jakarta EE 9.1
@@ -10,10 +10,10 @@
 ### Model and business layer
 Servlets, EJB and Hibernate
 
-####Entity diagram:
+#### Entity diagram:
 ![alt entities](images/entities.png)
 
-####SQL scripts:
+#### SQL scripts:
 - [drop_create_schema](sql_scripts/drop_create_schema.sql) - drops the tables if they exist and then creates them 
 - [insert_data](sql_scripts/insert_data.sql) - inserts data to the created tables
 - [delete_data](sql_scripts/delete_data.sql) - deletes all data from the tables
@@ -21,7 +21,7 @@ Servlets, EJB and Hibernate
 ### View
 JSP and Bootstrap
 
-####Screenshots:
+#### Screenshots:
 
 ![alt ](images/1.png)
 
