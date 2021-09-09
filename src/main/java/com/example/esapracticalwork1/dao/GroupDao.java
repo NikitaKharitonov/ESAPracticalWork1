@@ -43,6 +43,9 @@ public class GroupDao {
         entityManager.getTransaction().begin();
 
         Group group = entityManager.find(Group.class, id);
+        if (group != null) {
+            group.setYear(newGroupData.getYear());
+        }
 
         entityManager.getTransaction().commit();
         entityManager.close();
@@ -53,9 +56,11 @@ public class GroupDao {
         entityManager.getTransaction().begin();
 
         Group group = entityManager.find(Group.class, id);
-        entityManager.remove(group);
-
+        if (group != null) {
+            entityManager.remove(group);
+        }
         entityManager.getTransaction().commit();
+
         entityManager.close();
     }
 }

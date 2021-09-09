@@ -1,13 +1,14 @@
 package com.example.esapracticalwork1.servlets;
 
 import com.example.esapracticalwork1.ejb.AppBean;
-import com.example.esapracticalwork1.model.Course;
 import com.example.esapracticalwork1.model.Group;
 import com.example.esapracticalwork1.model.Student;
 import jakarta.ejb.EJB;
-import jakarta.servlet.*;
-import jakarta.servlet.http.*;
-import jakarta.servlet.annotation.*;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 import java.time.LocalDate;

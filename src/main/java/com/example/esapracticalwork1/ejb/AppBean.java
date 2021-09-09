@@ -1,6 +1,7 @@
 package com.example.esapracticalwork1.ejb;
 
 import com.example.esapracticalwork1.dao.CourseDao;
+import com.example.esapracticalwork1.dao.DaoUtil;
 import com.example.esapracticalwork1.dao.GroupDao;
 import com.example.esapracticalwork1.dao.StudentDao;
 import com.example.esapracticalwork1.model.Course;
@@ -86,10 +87,16 @@ public class AppBean {
     }
 
     public void deleteGroup(Long groupId) {
+        Group group = getGroupById(groupId);
+        if (group == null)
+            return;
+        group.getCourses().forEach(course -> this.deleteCourse(course.getId()));
+        group.getStudents().forEach(student -> this.deleteStudent(student.getId()));
+        DaoUtil.refresh();
         groupDao.delete(groupId);
     }
 
     public void deleteStudent(Long studentId) {
-        courseDao.delete(studentId);
+        studentDao.delete(studentId);
     }
 }

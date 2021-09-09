@@ -30,10 +30,10 @@
             <select class="form-control" id="groupId" name="groupId" required>
                 <% for (Long groupId : groupIds) {%>
                 <% if (groupId.equals(course.getGroup().getId())) {%>
-                <option value="<%= groupId %>"><%= groupId %>
+                <option value="<%= groupId %>" selected><%= groupId %>
                 </option>
                 <% } else { %>
-                <option value="<%= groupId %>" selected><%= groupId %>
+                <option value="<%= groupId %>"><%= groupId %>
                 </option>
                 <%
                         }

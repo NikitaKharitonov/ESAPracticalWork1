@@ -44,10 +44,12 @@ public class StudentDao {
         entityManager.getTransaction().begin();
 
         Student student = entityManager.find(Student.class, id);
-        student.setFirstName(newStudentData.getFirstName());
-        student.setLastName(newStudentData.getLastName());
-        student.setDateOfBirth(newStudentData.getDateOfBirth());
-        student.setGroup(newStudentData.getGroup());
+        if (student != null) {
+            student.setFirstName(newStudentData.getFirstName());
+            student.setLastName(newStudentData.getLastName());
+            student.setDateOfBirth(newStudentData.getDateOfBirth());
+            student.setGroup(newStudentData.getGroup());
+        }
 
         entityManager.getTransaction().commit();
         entityManager.close();
@@ -58,7 +60,9 @@ public class StudentDao {
         entityManager.getTransaction().begin();
 
         Student student = entityManager.find(Student.class, id);
-        entityManager.remove(student);
+        if (student != null) {
+            entityManager.remove(student);
+        }
 
         entityManager.getTransaction().commit();
         entityManager.close();

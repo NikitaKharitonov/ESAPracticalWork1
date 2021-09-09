@@ -44,9 +44,11 @@ public class CourseDao {
         entityManager.getTransaction().begin();
 
         Course course = entityManager.find(Course.class, id);
-        course.setName(newCourseData.getName());
-        course.setHours(newCourseData.getHours());
-        course.setGroup(newCourseData.getGroup());
+        if (course != null) {
+            course.setName(newCourseData.getName());
+            course.setHours(newCourseData.getHours());
+            course.setGroup(newCourseData.getGroup());
+        }
 
         entityManager.getTransaction().commit();
         entityManager.close();
@@ -57,7 +59,9 @@ public class CourseDao {
         entityManager.getTransaction().begin();
 
         Course course = entityManager.find(Course.class, id);
-        entityManager.remove(course);
+        if (course != null) {
+            entityManager.remove(course);
+        }
 
         entityManager.getTransaction().commit();
         entityManager.close();
